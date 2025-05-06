@@ -1,0 +1,47 @@
+======== Z A D A N I E 1 ==========
+ZASADY REALIZACJI ZADANIA
+Zadanie podzielone jest na dwie części : obowiązkową i dodatkową (nieobowiązkową).
+1. Realizacja części obowiązkowej odbędzie się na lab 8 (II część lab) oraz na lab 9 (całe lab).
+Rozwiązanie części obowiązkowej wykonane i przedstawione do oceny w trakcie
+laboratorium 9 będzie mogło wziąć udział w konkursie na minimalną wielkość obrazu.
+Rozwiązanie części obowiązkowej, które nie zostaną wykonane w trakcie zajęć należy
+OBOWIĄZKOWO opracować i przesłać do dedykowanego katalogu na moodle w terminie
+podanym przez prowadzącego.
+2. Ewentualne sprawozdanie z realizacji części nieobowiązkowej należy tradycyjnie przesłać do
+dedykowanego katalogu na moodle w terminie podanym przez prowadzącego.
+------- CZĘŚĆ OBOWIĄZKOWA --------
+1. (max. 30%)
+Proszę opracować aplikację (dowolny język programowania), która realizować będzie następującą
+funkcjonalność:
+a. po uruchomieniu kontenera z tą aplikacją, pozostawi ona w logach informację o dacie
+uruchomienia, imieniu i nazwisku autora programu oraz porcie TCP, na którym aplikacja ta
+„nasłuchuje”.
+b. aplikacja pozwala na wybranie kraju i miasta (np. z predefiniowanej listy) oraz
+zatwierdzenie tego wyboru. Na podstawie tych informacji aplikacja powinna wyświetlić
+aktualną pogodę w wybranej lokalizacji. Zakres informacji pogodowych pozostawiam do
+decyzji autorów kodu tak jak i projekt i formę UI.
+W sprawozdaniu proszę umieścić kod oprogramowania wraz z niezbędnymi komentarzami.
+2. (max. 50%)
+Opracować plik Dockerfile, który pozwoli na zbudowanie obrazu umożliwiającego uruchomienie
+aplikacji opracowanej w punkcie 1 jako kontener Docker. Przy ocenie brane będzie sposób
+opracowania tego pliku (wieloetapowe budowanie obrazu, ewentualne wykorzystanie warstwy
+scratch, optymalizacja funkcjonowania cache-a w procesie budowania, optymalizacja pod kątem
+zawartości i ilości warstw, healthcheck itd ). Plik Dockerfile powinien również zawierać informację na
+temat autora tego pliku (imię oraz nazwisko studenta) zgodną ze standardem OCI.
+W sprawozdaniu proszę umieścić plik Dockerfile wraz z niezbędnymi komentarzami.
+3. (max. 20%)
+Należy podać polecenia niezbędne do:
+a. zbudowania opracowanego obrazu kontenera,
+b. uruchomienia kontenera na podstawie zbudowanego obrazu,
+c. sposobu uzyskania informacji z logów, które wygenerowałą opracowana aplikacja podczas
+uruchamiana kontenera (patrz: punkt 1a),
+d. sprawdzenia, ile warstw posiada zbudowany obraz oraz jaki jest rozmiar obrazu.
+W sprawozdaniu należy podać treść poleceń (punkty a – d) w raz w ewentualnymi komentarzami
+oraz zrzut ekrany okna przeglądarki, potwierdzający poprawne działanie systemu.
+UWAGA – w przypadku oddawania sprawozdania za pośrednictwem moodle: Wszystkie
+informacje, które trzeba dostarczyć w sprawozdaniu (punkty 1-4) należy opracować w postaci pliku
+zadanie1.md a ten plik umieścić na koncie GitHub jako zwyczajowy opis zawartości repozytorium
+git. Na tym repozytorium proszę umieścić też opracowane źródła dla serwera oraz przygotowany plik
+Dockerfile (oraz wszystkie inne, niezbędne Państwa zdaniem pliki). Jako sprawozdanie należy
+przekazać wyłącznie plik tekstowy zawierający linki do użytego repozytorium na GitHub oraz
+DockerHub .
