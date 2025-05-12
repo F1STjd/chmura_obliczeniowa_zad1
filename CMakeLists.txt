@@ -7,12 +7,7 @@ project(
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(BUILD_SHARED_LIBS OFF)
-set(FMT_SHARED OFF)
-
 find_package(fmt REQUIRED)
-find_package(nlohmann_json REQUIRED)
-find_package(expresscpp REQUIRED)
 
 add_subdirectory(cpp-httplib)
 
@@ -21,9 +16,9 @@ add_executable(main
 )
 
 target_link_libraries(main PRIVATE 
-  expresscpp::expresscpp 
   fmt::fmt
   httplib::httplib
+  ${ZLIB_LIBRARIES}
 )
 
 target_compile_definitions(main PRIVATE CPPHTTPLIB_NO_EXCEPTIONS)
@@ -63,11 +58,12 @@ else()
       PRIVATE
         $<$<CONFIG:MinSizeRel>:-Wl,--gc-sections>
         $<$<CONFIG:MinSizeRel>:-s>
+        $<$<CONFIG:MinSizeRel>:-static>
     )
   endif()
 endif()
 
-target_compile_features(main PRIVATE cxx_std_17)
+target_compile_features(main PRIVATE cxx_std_26)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
