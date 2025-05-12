@@ -79,7 +79,7 @@ port: 3000
 REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
 zad1-v1      latest    35d107a2e5cf   23 minutes ago   1.29MB
 ```
-Ostateczna wielkość obrazu to **`1.29MB`**. Sam plik binarny zajmuje **`893kB`** - z pewnością da się zejść do mniejszych wartości, jednak żeby tak się stało to trzebaby się bawić, a na to trzeba mieć czas.
+Ostateczna wielkość obrazu to **`1.29MB`**. Sam plik binarny zajmuje **`893kB`** - z pewnością da się zejść do mniejszych wartości, jednak żeby tak się stało to trzebaby się bawić, a na to trzeba mieć czas. Jedank wydaje mi się, że taka wielkość zachowując interfejs graficzny w przeglądarce jest wystarczająca.
 
 #### Warstwy obrazu
 ```
