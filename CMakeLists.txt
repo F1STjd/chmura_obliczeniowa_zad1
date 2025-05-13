@@ -45,12 +45,14 @@ else()
       -Wshadow
       -Wconversion
       -fdiagnostics-color
-      $<$<CONFIG:MinSizeRel>:-Os>
+      $<$<CONFIG:MinSizeRel>:-Oz>
       $<$<CONFIG:MinSizeRel>:-ffunction-sections>
       $<$<CONFIG:MinSizeRel>:-fdata-sections>
       $<$<CONFIG:MinSizeRel>:-fvisibility=hidden>
-      #$<$<CONFIG:MinSizeRel>:-fno-exceptions>
+      $<$<CONFIG:MinSizeRel>:-fno-exceptions>
       $<$<CONFIG:MinSizeRel>:-fno-rtti>
+      $<$<CONFIG:MinSizeRel>:-fno-unwind-tables>
+      $<$<CONFIG:MinSizeRel>:-fno-asynchronous-unwind-tables>
   )
   
   if(NOT APPLE)
