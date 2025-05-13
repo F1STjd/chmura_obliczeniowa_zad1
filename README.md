@@ -1,4 +1,4 @@
-# Zadanie 1 - Weather Application
+# Zadanie 1
 
 ## Autor: Konrad Nowak
 
@@ -91,3 +91,56 @@ IMAGE          CREATED          CREATED BY                                      
 
 #### Użycie aplikacji
 Po uruchomieniu kontenera aplikacja jest dostępna pod adresem `http://localhost:3000`. Interfejs umożliwia wybór kraju i miasta, a następnie wyświetla aktualną temperaturę i prędkość wiatru dla wybranej lokalizacji.
+
+## CZĘŚĆ NIEOBOWIĄZKOWA
+
+### Budowa obrazu na 2 architektury
+Przygotowałem plik `Dockerfile_multi`, który już bez większego przywiązania do wielkości wynikowego obrazu, pozwala na jego zbudowanie. Korzystamy z pluginu `buildx`, aby stworzyć obraz na dwie platformy.
+
+#### Tworzenie `buildx`
+```bash
+docker buildx create --use --name mybuilder
+```
+
+#### Sprawdzenie sterownika
+```bash
+docker buildx inspect --bootstrap
+```
+Wynik:
+```bash
+Name:          mybuilder
+Driver:        docker-container
+Last Activity: 2025-05-13 19:58:08 +0000 UTC
+# ...
+```
+
+#### Zbudowanie obrazu i opublikowanie go na repozytorium
+Stworzyłem publiczne [repozytorium](https://hub.docker.com/repository/docker/konradnowakpollub/weather). Do którego automatycznie został dodany obraz po zbudowaniu.
+Polecenie użyte do budowania (precyzujemy architektury):
+```bash
+docker buildx build --platform linux/amd64,linux/arm64 -t konradnowakpollub/weather:latest --push .
+```
+
+#### Sprawdznie manifestu wynikowego obrazu
+Można to zrobić używając polecenia:
+```bash
+docker buildx imagetools inspect konradnowakpollub/weather:latest
+```
+Uzyskany wynik w konsoli:
+```bash
+zadanie1> docker buildx imagetools inspect konradnowakpollub/weather:latest
+Name:      docker.io/konradnowakpollub/weather:latest
+MediaType: application/vnd.oci.image.index.v1+json
+Digest:    sha256:3c8eff38372fa468457e3c113d0006c78392020b4cf9e93c913d214013c6e43b
+
+Manifests:
+  Name:        docker.io/konradnowakpollub/weather:latest@sha256:17183929d873f42809d70f9cf886f7c07d6cf75b536dadba1857d95b08c26b42
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/amd64
+
+  Name:        docker.io/konradnowakpollub/weather:latest@sha256:e35d7c0a3b0f2bd80cda34e6c020e27b9060f438b1bb35d16f27a6919f0ebed3
+  MediaType:   application/vnd.oci.image.manifest.v1+json
+  Platform:    linux/arm64
+# ...
+```
+Jak można zobaczyć w wyżej wymienionym fragmencie kodu, manifest zawiera deklaracje dla dwóch platform sprzętowych.
